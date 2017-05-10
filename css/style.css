@@ -1,1 +1,9 @@
 /* file for your css */
+
+.wrong {
+    color: red;
+}
+
+.black {
+    color: black !important;
+}

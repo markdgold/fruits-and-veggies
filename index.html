@@ -1,28 +1,47 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Fruit and Veggies</title>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
+<html ng-app="fruitVeg" ng-controller="Main">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
-        <script src="js/fruits_and_veggies_test.js"></script>
-        <script src="js/app.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Fruit and Veggies</h1>
-            <div class="row">
-                <div class="col-sm-4">
-                    col 1
+<head>
+    <title>Fruit and Veggies</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
+    <script src="js/fruits_and_veggies_test.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Fruit and Veggies</h1>
+        <div class="row">
+            <div class="col-sm-4">
+                Fruit
+                <div ng-repeat="fruit in fruitList track by $index" class="well text-center">
+                    <i ng-click="moveToCenter('fruit', fruit, $index)" class="glyphicon glyphicon-arrow-right pull-right"></i>
+                    <i ng-click="moveFruit('up',fruit, $index)" class="glyphicon glyphicon-arrow-up pull-left"></i>
+                    <i ng-click="moveFruit('down',fruit, $index)" class="glyphicon glyphicon-arrow-down pull-left"></i>
+                    <span ng-class="{'wrong': isWrong(fruit, 'vegetables'), 'black': black}">{{fruit}}</span>
                 </div>
-                <div class="col-sm-4">
-                    col 2
+            </div>
+            <div class="col-sm-4">
+                col 2
+                <div ng-repeat="produce in produceList track by $index" class="well text-center">
+                    <i ng-click="move('left', produce, $index)" class="glyphicon glyphicon-arrow-left pull-left"></i>
+                    <span>{{produce}}</span>
+                    <i ng-click="move('right', produce, $index)" class="glyphicon glyphicon-arrow-right pull-right"></i>
                 </div>
-                <div class="col-sm-4">
-                    col 3
+            </div>
+            <div class="col-sm-4">
+                Vegetables
+                <div ng-repeat="vegetable in vegList track by $index" class="well text-center">
+                    <i ng-click="moveToCenter('veg', vegetable, $index)" class="glyphicon glyphicon-arrow-left pull-left"></i>
+                    <span ng-class="{'wrong': isWrong(vegetable, 'fruits'), 'black': black}">{{vegetable}}</span>
+                    <i ng-click="moveVeg('up',vegetable, $index)" class="glyphicon glyphicon-arrow-up pull-right"></i>
+                    <i ng-click="moveVeg('down',vegetable, $index)" class="glyphicon glyphicon-arrow-down pull-right"></i>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
